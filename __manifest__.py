@@ -25,6 +25,7 @@
         'views/patient_view.xml',
         'views/appointment_view.xml',
         'views/doctor_view.xml',
+        'views/female_patient.xml',
 
     ],
     'installable' : True,
