@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="appointment_tree_view" model="ir.ui.view">
+        <field name="name">hospital.appointment.tree</field>
+        <field name="model">hospital.appointment</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sl_app"/>
+                <field name="patient_id"/>
+                <field name="appointment_date"/>
+                <field name="booking_date"/>
+                <field name="gender"/>
+                <field name="ref"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="appointment_form_view" model="ir.ui.view">
+        <field name="name">hospital.appointment.form</field>
+        <field name="model">hospital.appointment</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="sl_app"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="patient_id"/>
+                            <field name="gender"/>
+                        </group>
+                        <group>
+                            <field name="appointment_date"/>
+                            <field name="booking_date"/>
+                            <field name="ref"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="note"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_appointment" model="ir.actions.act_window">
+        <field name="name">Appointment Card</field>
+        <field name="res_model">hospital.appointment</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add a new appointment
+            </p>
+        </field>
+    </record>
+
+
+    <menuitem id="appointment_menu"
+              name="Appointment Card"
+              parent="hospital_appointment_root"
+              action="action_appointment"
+              sequence="0"/>
+
+
+</odoo>

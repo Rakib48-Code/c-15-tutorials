@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="patient_tree_view" model="ir.ui.view">
+        <field name="name">hospital.patient.tree</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sl_no"/>
+                <field name="name"/>
+                <field name="age"/>
+                <field name="gender"/>
+                <field name="contact"/>
+                <field name="note"/>
+                <field name="ref"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="patient_form_view" model="ir.ui.view">
+        <field name="name">hospital.patient.form</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="%(action_create_appointment)d" string="Create Appointment" type="action"
+                            class="oe_highlight"/>
+                    <button name="action_send_email" string="Send By Email" type="object" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="open_patient_appointment" type="object" class="oe_stat_button" icon="fa-calendar">
+                            <field name="appointment_count" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <field name="image" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="sl_no"/>
+                        </h1>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="PATIENT NAME"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="age"/>
+                            <field name="gender"/>
+                            <field name="ref"/>
+                            <field name="user_id"/>
+                        </group>
+                        <group>
+                            <field name="age_group"/>
+                            <field name="contact"/>
+                            <field name="email_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="note"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_patient" model="ir.actions.act_window">
+        <field name="name">Patient Card</field>
+        <field name="res_model">hospital.patient</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add a new Patient
+            </p>
+        </field>
+    </record>
+
+
+    <menuitem id="patient_menu"
+              name="Patient Card"
+              parent="hospital_patient_root"
+              action="action_patient"
+              sequence="0"/>
+
+
+</odoo>
